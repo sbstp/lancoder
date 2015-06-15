@@ -12,7 +12,7 @@ import org.lancoder.common.third_parties.FFmpeg;
 import org.lancoder.common.third_parties.FFprobe;
 import org.lancoder.common.third_parties.ThirdParty;
 
-public abstract class Container extends RunnableServiceAdapter implements ServiceManager {
+public abstract class Container<C extends Config> extends RunnableServiceAdapter implements ServiceManager {
 
 	private final HashMap<Class<? extends ThirdParty>, ThirdParty> thirdParties = new HashMap<>();
 
@@ -30,7 +30,7 @@ public abstract class Container extends RunnableServiceAdapter implements Servic
 		registerServices();
 	}
 
-	public abstract void setConfigManager(ConfigManager<? extends Config> configManager);
+	public abstract void setConfigManager(ConfigManager<C> configManager);
 
 	protected FFmpeg getFFmpeg() {
 		return (FFmpeg) getThirdParty(FFmpeg.class);

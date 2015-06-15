@@ -31,7 +31,7 @@ import org.lancoder.master.dispatcher.DispatcherPool;
 import org.lancoder.muxer.MuxerListener;
 import org.lancoder.muxer.MuxerPool;
 
-public class Master extends Container implements MuxerListener, JobInitiatorListener, EventListener {
+public class Master extends Container<MasterConfig> implements MuxerListener, JobInitiatorListener, EventListener {
 
 	public static final String ALGORITHM = "SHA-256";
 
@@ -50,10 +50,8 @@ public class Master extends Container implements MuxerListener, JobInitiatorList
 	private MasterSavedInstance savedInstance;
 
 	@Override
-	public void setConfigManager(ConfigManager<? extends Config> config) {
-		@SuppressWarnings("unchecked")
-		ConfigManager<MasterConfig> manager = (ConfigManager<MasterConfig>) config;
-		this.configManager = manager;
+	public void setConfigManager(ConfigManager<MasterConfig> config) {
+		this.configManager = config;
 	}
 
 	@Override

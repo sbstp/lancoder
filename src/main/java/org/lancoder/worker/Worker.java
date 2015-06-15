@@ -33,7 +33,7 @@ import org.lancoder.worker.converter.video.VideoConverterPool;
 import org.lancoder.worker.server.WorkerServer;
 import org.lancoder.worker.server.WorkerServerListener;
 
-public class Worker extends Container implements WorkerServerListener, MasterContacterListener, ConverterListener {
+public class Worker extends Container<WorkerConfig> implements WorkerServerListener, MasterContacterListener, ConverterListener {
 
 	private Node node;
 	private AudioConverterPool audioPool;
@@ -45,10 +45,8 @@ public class Worker extends Container implements WorkerServerListener, MasterCon
 	private ConfigManager<WorkerConfig> configManager;
 
 	@Override
-	public void setConfigManager(ConfigManager<? extends Config> config) {
-		@SuppressWarnings("unchecked")
-		ConfigManager<WorkerConfig> manager = (ConfigManager<WorkerConfig>) config;
-		this.configManager = manager;
+	public void setConfigManager(ConfigManager<WorkerConfig> config) {
+		this.configManager = config;
 	}
 
 	@Override
